@@ -66,10 +66,10 @@ Just a quick, Why do Containers start in detached mode (-d, background)?
 - When trying to run the web app, on localhost:5000, Ran into the error, Internal Service Error, checked Docker logs for myapp container, saw, 'MySQLdb.OperationalError: (2005, "Unknown server host 'mydb' (-2)")' ‒ checked to see if container mydb was running (on Docker Desktop) and it was not!    
 - I realised that, the container, myapp, connects to the, mydb, container (they work with each other) and More Specifically, mydb is a dependency of the myapp container.  
 > - To fix the problem, I deleted the offline, mydb, container (realised later I could've just re-started it 🤦‍♂️), ran the command, "docker run -d --name mydb --network my-customnet -e MYSQL_ROOT_PASSWORD=my-secret-pw mysql:5.7", in VSCode, checked if the container/s were running with, docker ps, and they were, Alhamdulillah.   
-> - <image1>  
-> - <img2>  
-> - Web app working on localhost:5000
-> - <img3>  
+> - <img width="1024" height="178" alt="image" src="https://github.com/user-attachments/assets/9eb374d4-9cdb-454e-9c89-83e31d7bd693" />  
+> - <img width="989" height="450" alt="image" src="https://github.com/user-attachments/assets/ef60ede2-8d10-4d86-a0ef-d48980735403" />  
+> - Web app working on localhost:5000  
+> - <img width="406" height="109" alt="image" src="https://github.com/user-attachments/assets/40fbf95a-0ec7-4929-8e60-4df35d2c4605" />  
   
     
 If I wanted to make a database container, I'll need to use a base Image (think foundations of a building can be same; base image being same, but different buildings could be built on top, ie. different containers could have, same image..)  
@@ -97,7 +97,7 @@ What to do If Image too big, taking up lots of space? Use multi-stage builds
 
 ## Making Our Image Lighter: Multistage Builds (we optimise our Dockerfile)  
 - Removed build tools, only kept what was needed for runtime environment; Image build reduced from **724MB**  
-- <img>  
+- <img width="611" height="73" alt="image" src="https://github.com/user-attachments/assets/d8828ab0-b4a4-48ca-a751-c4a1b14f5a6f" />  
 - With the Code:  
 `FROM python:3.8-slim`  
 `WORKDIR /app`  
@@ -110,10 +110,10 @@ What to do If Image too big, taking up lots of space? Use multi-stage builds
 `RUN pip install flask mysqlclient`  
 `EXPOSE 5000`  
 `CMD ["python", "app.py"]`  
-- To **189MB** with the Multistage Build.  
-- <img>  
+- To **189MB** with the Multistage Build -- a 73+% decrease in image size!    
+- <img width="592" height="75" alt="image" src="https://github.com/user-attachments/assets/32ad9a16-cb57-4a61-8d62-a197665f3e29" />  
 - > Code:  
-- > <img>  
+- > <img width="458" height="541" alt="image" src="https://github.com/user-attachments/assets/38516f2f-ff38-4587-9f88-0097b88175ed" />  
   
 > When app grows larger in scale (multi container situation..), we look at Kubernetes (k8s)  
 
