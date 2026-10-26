@@ -120,5 +120,18 @@ What to do If Image too big, taking up lots of space? Use multi-stage builds
 <Br>
 
 **k8s:** hundreds/thousands container mgmt./ orchestration ‒ helps developer's manage code ‒ helps microservice architechture mgmt.  
-> docker swarm no auto scaling, k8s has auto-scaling.  
+> docker swarm no auto scaling, k8s has auto-scaling.   
 > when grows larger in scale ‒ useful   
+
+## More Practice:  
+1. Created a Docker container (old-fashioned way) -- using nginx as image -- `docker run --name web -itd -p 8080:80 nginx`  
+> creating a docker container, called, web  
+> enable interactive shell access with the flag, -itd (-d for detached/ background container creation)
+> use port forwarding to expose container's port 80, atach it host's port, 8080
+> <img width="777" height="288" alt="image" src="https://github.com/user-attachments/assets/19e80db9-25ff-4653-95c8-89265c2fbee4" />
+Let's do the same thing using, Docker Compose   
+- Created a new directory (simple) and a compose .yml file   
+> Added services; website (nginx) and ports (8081:80)  -- "attach port 8081 on my PC/ local host to the container's port 80"  
+> > <img width="528" height="255" alt="image" src="https://github.com/user-attachments/assets/eb1881bd-8744-4eeb-86b4-95752867929d" />  
+> `docker compose up -d` and visit localhost:8081 shows it's working
+> > <img width="1021" height="378" alt="image" src="https://github.com/user-attachments/assets/03c39120-9bb0-4f08-8ae5-03ead7a40228" />
